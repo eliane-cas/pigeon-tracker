@@ -30,6 +30,15 @@ const bird = `<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" vie
 //   console.log(legs);
 // });
 
+navigator.geolocation.getCurrentPosition(
+  function (position) {
+    console.log(position);
+  },
+  function () {
+    console.log("could not get your position");
+  }
+);
+
 class Pigeon {
   date = new Date();
   id = (Date.now() + "").slice(-10);
@@ -96,7 +105,7 @@ class App {
 
     this.#map = L.map("map").setView(coords, this.#mapZoomLevel);
 
-    L.tileLayer("https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+    L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
